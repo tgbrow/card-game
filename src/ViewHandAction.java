@@ -5,8 +5,7 @@ public class ViewHandAction extends Action {
         name = "View Hand";
     }
 
-    public Response execute(GameIO io, DrawDiscardGameState gs) {
-        io.println(gs.playerHand.toString());
-        return Response.CONTINUE_GAME;
+    public ActionResult execute(GameIO io, DrawDiscardGameState gs) {
+        return ActionResult.continueResult(gs.playerHand.toString());
     }
 }

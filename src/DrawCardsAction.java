@@ -7,7 +7,7 @@ public class DrawCardsAction extends Action {
         name = "Draw Cards";
     }
 
-    public Response execute(GameIO io, DrawDiscardGameState gs) {
+    public ActionResult execute(GameIO io, DrawDiscardGameState gs) {
         io.print("How many cards would you like to draw?: ");
 
         int numCards = io.getInt();
@@ -15,11 +15,9 @@ public class DrawCardsAction extends Action {
         try {
             cards = gs.playerHand.draw(gs.drawDeck, numCards);
         } catch (IllegalArgumentException|IllegalStateException e) {
-            io.println(e.getMessage());
-            return Response.CONTINUE_GAME;
+            return ActionResult.continueResult(e.getMessage());
         }
 
-        io.println("You drew: " + Card.listToString(cards));
-        return Response.CONTINUE_GAME;
+        return ActionResult.continueResult("You drew: " + Card.listToString(cards));
     }
 }

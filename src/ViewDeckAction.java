@@ -9,10 +9,9 @@ public class ViewDeckAction extends Action {
         name = "View Deck";
     }
 
-    public Response execute(GameIO io, DrawDiscardGameState gs) {
+    public ActionResult execute(GameIO io, DrawDiscardGameState gs) {
         Deck d = getDeck(io, gs);
-        io.println("\n" + d.toString());
-        return Response.CONTINUE_GAME;
+        return ActionResult.continueResult(d.toString());
     }
 
     private Deck getDeck(GameIO io, DrawDiscardGameState gs) {
@@ -20,7 +19,7 @@ public class ViewDeckAction extends Action {
         io.print(TextUtil.menuFormat(
             "Which deck would you like to view?",
             decks.stream().map(x -> x.getName()).collect(toList())));
-        io.print("Deck selection: ");
+        io.prompt("Select a deck: ");
         return decks.get(io.getInt(0, decks.size() - 1));
     }
 }

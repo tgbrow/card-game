@@ -95,18 +95,22 @@ public class Deck {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (name != null) {
-            sb.append(String.format("Deck: %s\n", name));
+            sb.append(String.format("= Info for %s =\n", name));
         }
-        sb.append(String.format("Number of Cards: %d", this.size()));
+        sb.append(String.format("Card Count: %d", this.size()));
         if (this.size() > 0) {
-            sb.append("\nTop => ");
-            for (int i = deck.size() - 1; i >= 0; --i) {
-                sb.append(deck.get(i));
-                if (i != 0) {
+            sb.append("\nCard Order (top to bottom):");
+            ArrayList<Card> topToBot = new ArrayList<>(deck);
+            Collections.reverse(topToBot);
+            for (int i = 0; i < topToBot.size(); ++i) {
+                if (i % 10 == 0) {
+                    sb.append("\n" + TextUtil.INDENT);
+                }
+                sb.append(topToBot.get(i));
+                if (i != topToBot.size() - 1) { // not last card
                     sb.append(", ");
                 }
             }
-            sb.append(" <= Bottom");
         }
         return sb.toString();
     }

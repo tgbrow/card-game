@@ -5,9 +5,8 @@ public class ExitGameAction extends Action {
         name = "Exit Game";
     }
 
-    public Response execute(GameIO io, DrawDiscardGameState gs) {
-        io.println(String.format("Thanks for playing, %s!", gs.playerName));
-        return Response.END_GAME;
+    public ActionResult execute(GameIO io, DrawDiscardGameState gs) {
+        return ActionResult.endResult(String.format("Thanks for playing, %s!\n", gs.playerName));
     }
 }
 

@@ -15,7 +15,7 @@ public class Actions {
         io.print(menu());
         Action action = null;
         while (true) {
-            io.print("Please choose an action by entering its number: ");
+            io.prompt("Please choose an action by entering its number: ");
             try {
                 action = fromInt(io.getInt());
                 break;
@@ -23,7 +23,6 @@ public class Actions {
                 io.println(e.getMessage());
             }
         }
-        io.println("You chose action: " + action.getName());
         return action;
     }
 
@@ -32,7 +31,7 @@ public class Actions {
             return ACTIONS[x];
         }
         throw new IllegalArgumentException(
-            String.format("%d does not correspond to an Action.", x));
+            String.format("%d does not correspond to an action.", x));
     }
 
     public static String menu() {

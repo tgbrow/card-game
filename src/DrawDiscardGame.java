@@ -16,21 +16,31 @@ public class DrawDiscardGame {
 
     public static DrawDiscardGame initNewGame(InputStream in, PrintStream out) {
         GameIO io = new GameIO(in, out);
-        io.println("\n~~ Welcome to the Draw/Discard Game! ~~\n");
+        io.clearConsole();
+        io.println("Welcome to Draw & Discard!");
 
         DrawDiscardGameOptions options = DrawDiscardGameOptions.promptOptions(io);
         DrawDiscardGame game = new DrawDiscardGame(io, options);
 
-        io.println("Great, the game has been initialized! Time to play...");
+        io.clearConsole();
+        io.println("Great, the game has been initialized! Time to play!");
+        io.enterThenClear();
         return game;
     }
 
     public void run() {
-        Action action;
-        do {
-            io.println();
-            action = Actions.promptAction(io);
-            io.println();
-        } while (action.execute(io, gs) == Response.CONTINUE_GAME);
+        ActionResult result;
+        while (true) {
+            Action action = Actions.promptAction(io);
+            io.clearConsole();
+            result = action.execute(io, gs);
+            io.clearConsole();
+            io.println(result.result);
+            if (result.command == Command.END_GAME) {
+                break;
+            }
+            io.enterThenClear();
+            io.println(result.result + "\n");
+        }
     }
 }

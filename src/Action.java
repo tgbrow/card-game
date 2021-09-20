@@ -6,5 +6,5 @@ public abstract class Action {
         return name;
     }
 
-    protected abstract Response execute(GameIO io, DrawDiscardGameState gs);
+    protected abstract ActionResult execute(GameIO io, DrawDiscardGameState gs);
 }
