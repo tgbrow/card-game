@@ -11,7 +11,7 @@ public class DrawDiscardGameOptions {
         DrawDiscardGameOptions options = new DrawDiscardGameOptions();
 
         io.print("Please enter your name: ");
-        options.playerName = io.getString().trim();
+        options.playerName = io.getLine().trim();
         io.println(String.format("Thank you, %s! :D\n", options.playerName));
 
         io.print(HAND_SIZE_LIMIT_PROMPT);

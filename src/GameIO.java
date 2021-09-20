@@ -28,6 +28,10 @@ public class GameIO {
         return in.next();
     }
 
+    public String getLine() {
+        return in.nextLine();
+    }
+
     // Bounds min and max are both inclusive.
     public int getInt(int min, int max) {
         while (true) {
